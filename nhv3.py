@@ -9,15 +9,16 @@ from time import sleep
 #set useer-agent and cookie
 #設定user-agent和cookie
 def basic_setting():
-    global u_a, cookie
-    u_a = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36 Edg/103.0.1264.71'
-    cookie = 'csrftoken=uDWZIuYMieF4R9TFlfrvVorKxrsUA5piSkG8nEU2p6GB965tK6hm5KjdfdbHYeIB; cf_clearance=FSUrixA27WIxIeBprLVeV834dz6_fYRNw1QbWiTx7sQ-1659336420-0-150'
+    global u_a, cookie, your_path
+    u_a = input('User-Agent: ')
+    cookie = input('Cookie: ')
+    your_path = input("Your Director's Path: ")
 
 def main():
+    global your_path
     #change director to nhentai
     #移動路徑到nhentai
-    path = 'C:\Downloads\\nhentai'
-    os.chdir(path)
+    os.chdir(your_path)
     
     #get number
     #取得要下載的車號
@@ -45,18 +46,18 @@ def get_nh_num():
 #get images
 #取得圖片
 def get_img(nh_list):
-    global u_a, cookie
+    global u_a, cookie, your_path
     #one by one
     #一次一篇漫畫
     for nh_number in nh_list:
         print(nh_number)
-        os.chdir('C:\Downloads\\nhentai')
+        os.chdir(your_path)
         src_list = []
         #set dir
         #建立資料夾
         if not os.path.exists(nh_number):
             os.mkdir(nh_number)
-            os.chdir(f'C:\Downloads\\nhentai\{nh_number}')
+            os.chdir(f'{your_path}\{nh_number}')
 
             #get preview src
             #取得預覽圖片的src
